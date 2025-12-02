@@ -1,0 +1,722 @@
+// Documents.scss - CaseMate Document Management Styles
+
+// ============================================================================
+// Variables
+// ============================================================================
+$primary-color: #2563eb;
+$primary-hover: #1e40af;
+$danger-color: #dc2626;
+$danger-bg: #fee2e2;
+$danger-border: #fca5a5;
+
+$text-primary: #111827;
+$text-secondary: #374151;
+$text-muted: #6b7280;
+$text-light: #9ca3af;
+
+$bg-white: #ffffff;
+$bg-gray-50: #f9fafb;
+$bg-gray-100: #f3f4f6;
+$bg-blue-50: #eff6ff;
+$bg-blue-100: #dbeafe;
+
+$border-color: #e5e7eb;
+$border-gray: #d1d5db;
+$border-gray-dark: #9ca3af;
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+$border-radius: 8px;
+$border-radius-lg: 12px;
+
+$transition-base: all 0.2s ease;
+$transition-slow: all 0.3s ease;
+
+// ============================================================================
+// Document List Styles
+// ============================================================================
+.document-list {
+    background: $bg-white;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+
+    .document-list-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid $border-color;
+
+        h2 {
+            margin: 0 0 16px 0;
+            font-size: 24px;
+            color: $text-primary;
+            font-weight: 600;
+        }
+    }
+
+    .document-controls {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .search-box,
+    .filter-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid $border-gray;
+        border-radius: $border-radius;
+        background: $bg-white;
+        transition: $transition-base;
+
+        &:focus-within {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        svg {
+            color: $text-muted;
+            flex-shrink: 0;
+        }
+    }
+
+    .search-box {
+        flex: 1;
+        max-width: 400px;
+        min-width: 250px;
+
+        input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: $text-primary;
+            background: transparent;
+
+            &::placeholder {
+                color: $text-light;
+            }
+        }
+    }
+
+    .filter-box {
+        select {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: $text-primary;
+            cursor: pointer;
+            background: transparent;
+            padding-right: 8px;
+        }
+    }
+}
+
+// ============================================================================
+// Table Styles
+// ============================================================================
+.document-table-container {
+    overflow-x: auto;
+}
+
+.document-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background: $bg-gray-50;
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: $text-muted;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr {
+            transition: $transition-base;
+
+            &:hover {
+                background: $bg-gray-50;
+            }
+        }
+
+        td {
+            padding: 16px;
+            border-top: 1px solid $border-color;
+            font-size: 14px;
+            color: $text-secondary;
+        }
+    }
+
+    .doc-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $primary-color;
+        font-weight: 500;
+
+        svg {
+            flex-shrink: 0;
+        }
+    }
+
+    .doc-type {
+        display: inline-block;
+        padding: 4px 8px;
+        background: $bg-blue-100;
+        color: $primary-hover;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-icon {
+        padding: 6px;
+        background: none;
+        border: 1px solid $border-gray;
+        border-radius: 6px;
+        cursor: pointer;
+        color: $text-muted;
+        transition: $transition-base;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: $bg-gray-100;
+            border-color: $border-gray-dark;
+            color: $text-secondary;
+        }
+
+        &.btn-danger:hover {
+            background: $danger-bg;
+            border-color: $danger-border;
+            color: $danger-color;
+        }
+    }
+}
+
+.no-documents {
+    padding: 60px 20px;
+    text-align: center;
+    color: $text-light;
+
+    svg {
+        margin: 0 auto 16px;
+        opacity: 0.5;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+    }
+}
+
+// ============================================================================
+// Document Upload Styles
+// ============================================================================
+.document-upload {
+    background: $bg-white;
+    border-radius: $border-radius-lg;
+    padding: 24px;
+    box-shadow: $shadow-sm;
+
+    h3 {
+        margin: 0 0 20px 0;
+        font-size: 20px;
+        color: $text-primary;
+        font-weight: 600;
+    }
+
+    .upload-zone {
+        border: 2px dashed $border-gray;
+        border-radius: $border-radius-lg;
+        padding: 48px;
+        text-align: center;
+        transition: $transition-slow;
+        background: $bg-gray-50;
+        cursor: pointer;
+
+        &.dragging {
+            border-color: $primary-color;
+            background: $bg-blue-50;
+
+            svg {
+                color: $primary-color;
+                transform: scale(1.1);
+            }
+        }
+
+        svg {
+            color: $text-light;
+            margin-bottom: 16px;
+            transition: $transition-base;
+        }
+
+        p {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: $text-secondary;
+        }
+
+        >span {
+            display: block;
+            margin: 12px 0;
+            color: $text-muted;
+            font-size: 14px;
+        }
+
+        small {
+            color: $text-light;
+            font-size: 13px;
+            display: block;
+            margin-top: 12px;
+        }
+    }
+
+    .upload-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background: $primary-color;
+        color: $bg-white;
+        border-radius: $border-radius;
+        cursor: pointer;
+        font-weight: 500;
+        transition: $transition-base;
+
+        &:hover {
+            background: $primary-hover;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    .selected-files {
+        margin-top: 24px;
+        padding: 20px;
+        background: $bg-gray-50;
+        border-radius: $border-radius;
+
+        h4 {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            color: $text-primary;
+            font-weight: 600;
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: $bg-white;
+            border-radius: $border-radius;
+            border: 1px solid $border-color;
+            transition: $transition-base;
+
+            &:hover {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            svg {
+                color: $text-muted;
+                flex-shrink: 0;
+            }
+
+            .file-info {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+
+                .file-name {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: $text-primary;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .file-size {
+                    font-size: 12px;
+                    color: $text-muted;
+                    margin-top: 2px;
+                }
+            }
+
+            .remove-file {
+                padding: 4px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: $danger-color;
+                border-radius: 4px;
+                transition: $transition-base;
+                flex-shrink: 0;
+
+                &:hover {
+                    background: $danger-bg;
+                }
+            }
+        }
+
+        .upload-submit-button {
+            width: 100%;
+            padding: 12px;
+            background: $primary-color;
+            color: $bg-white;
+            border: none;
+            border-radius: $border-radius;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            transition: $transition-base;
+
+            &:hover {
+                background: $primary-hover;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+// ============================================================================
+// Modal & Preview Styles
+// ============================================================================
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: $bg-white;
+    border-radius: $border-radius-lg;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: $shadow-lg;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid $border-color;
+
+    h3 {
+        margin: 0;
+        font-size: 20px;
+        color: $text-primary;
+        font-weight: 600;
+    }
+
+    .close-button {
+        padding: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $text-muted;
+        border-radius: 6px;
+        transition: $transition-base;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: $bg-gray-100;
+            color: $text-primary;
+        }
+    }
+}
+
+.preview-body {
+    padding: 24px;
+
+    .preview-placeholder {
+        padding: 60px 20px;
+        text-align: center;
+        background: $bg-gray-50;
+        border-radius: $border-radius;
+        margin-bottom: 24px;
+
+        svg {
+            color: $border-gray;
+            margin-bottom: 16px;
+        }
+
+        p {
+            margin: 0 0 8px 0;
+            color: $text-muted;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        span {
+            color: $text-light;
+            font-size: 14px;
+        }
+    }
+
+    .document-metadata {
+        h4 {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            color: $text-primary;
+            font-weight: 600;
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            label {
+                font-size: 12px;
+                color: $text-muted;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            span {
+                font-size: 14px;
+                color: $text-primary;
+                word-break: break-word;
+            }
+        }
+    }
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background: $bg-gray-50;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: $border-radius;
+    font-weight: 500;
+    cursor: pointer;
+    transition: $transition-base;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.btn-primary {
+    background: $primary-color;
+    color: $bg-white;
+    border: none;
+
+    &:hover {
+        background: $primary-hover;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-secondary {
+    background: $bg-white;
+    color: $text-secondary;
+    border: 1px solid $border-gray;
+
+    &:hover {
+        background: $bg-gray-100;
+        border-color: $border-gray-dark;
+    }
+}
+
+// ============================================================================
+// Responsive Design
+// ============================================================================
+@media (max-width: 1024px) {
+    .document-table {
+        font-size: 13px;
+
+        thead th,
+        tbody td {
+            padding: 12px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .document-list-header {
+        padding: 16px;
+    }
+
+    .document-controls {
+        flex-direction: column;
+
+        .search-box {
+            max-width: none;
+            min-width: auto;
+        }
+    }
+
+    .document-table {
+        font-size: 12px;
+
+        thead th,
+        tbody td {
+            padding: 8px;
+        }
+
+        .doc-name {
+            font-size: 13px;
+
+            svg {
+                display: none;
+            }
+        }
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .document-upload {
+        padding: 16px;
+
+        .upload-zone {
+            padding: 32px 16px;
+        }
+    }
+
+    .preview-body .metadata-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .document-table-container {
+        overflow-x: scroll;
+    }
+
+    .document-table {
+        min-width: 600px;
+    }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+@media print {
+
+    .document-controls,
+    .action-buttons,
+    .modal-overlay {
+        display: none !important;
+    }
+
+    .document-list,
+    .document-upload {
+        box-shadow: none;
+        border: 1px solid $border-color;
+    }
+}

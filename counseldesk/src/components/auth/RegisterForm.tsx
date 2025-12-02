@@ -139,7 +139,7 @@ const Register: React.FC = () => {
             <div className="register-card">
                 <div className="register-header">
                     <h1>Create Account</h1>
-                    <p>Join CaseMate to manage your legal practice</p>
+                    <p>Join CounselDesk to manage your legal practice</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="register-form">
