@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import './Layout.scss';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout: React.FC = () => {
     const [activeRoute, setActiveRoute] = useState('/dashboard');
 
     return (
@@ -13,7 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="layout-main">
                 <Topbar />
                 <div className="layout-content">
-                    {children}
+                    <Outlet /> {/* Nested routes will render here */}
                 </div>
             </div>
         </div>
