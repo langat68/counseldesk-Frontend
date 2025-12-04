@@ -58,6 +58,17 @@
 // SIDEBAR STYLES
 // ============================================
 
+
+.layout-content {
+    margin-left: var(--sidebar-width);
+    padding: 24px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed~.layout-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
 .sidebar {
     position: fixed;
     left: 0;
@@ -778,4 +789,25 @@
         flex: 1;
         justify-content: flex-end;
     }
+}
+
+.layout {
+    display: flex;
+}
+
+.layout-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed~.layout-main {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+.layout-content {
+    margin-top: var(--topbar-height);
+    padding: 24px;
+    background: var(--bg-secondary);
+    min-height: calc(100vh - var(--topbar-height));
 }

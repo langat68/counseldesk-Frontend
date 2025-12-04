@@ -1,0 +1,690 @@
+// Colors
+$primary-color: #2563eb;
+$primary-hover: #1d4ed8;
+$secondary-color: #64748b;
+$secondary-hover: #475569;
+$danger-color: #dc2626;
+$danger-hover: #b91c1c;
+$border-color: #e2e8f0;
+$background: #ffffff;
+$background-alt: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$error-color: #ef4444;
+
+// Client List Container
+.client-list-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: $background-alt;
+    min-height: 100vh;
+
+    .client-list-header {
+        margin-bottom: 2rem;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: $text-primary;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .search-input {
+                flex: 1;
+                min-width: 250px;
+                padding: 0.75rem 1rem;
+                border: 1px solid $border-color;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                transition: all 0.2s;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary-color;
+                    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+                }
+
+                &::placeholder {
+                    color: $text-secondary;
+                }
+            }
+        }
+    }
+}
+
+// Table Wrapper
+.client-table-wrapper {
+    background: $background;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+// Client Table
+.client-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background: $background-alt;
+        border-bottom: 2px solid $border-color;
+
+        tr th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $text-secondary;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border-color;
+            transition: background-color 0.15s;
+
+            &:hover {
+                background: $background-alt;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            td {
+                padding: 1.25rem 1.5rem;
+                color: $text-primary;
+                font-size: 0.95rem;
+
+                &.no-results {
+                    text-align: center;
+                    color: $text-secondary;
+                    padding: 3rem 1.5rem;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+
+    .client-name {
+        font-weight: 600;
+        color: $text-primary;
+    }
+
+    .client-email {
+        color: $text-secondary;
+    }
+
+    .client-phone {
+        color: $text-secondary;
+    }
+
+    .client-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+}
+
+// Buttons
+.btn-primary,
+.btn-secondary,
+.btn-edit,
+.btn-delete {
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-primary {
+    background: $primary-color;
+    color: white;
+
+    &:hover {
+        background: $primary-hover;
+    }
+}
+
+.btn-secondary {
+    background: $secondary-color;
+    color: white;
+
+    &:hover {
+        background: $secondary-hover;
+    }
+}
+
+.btn-edit {
+    background: $primary-color;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.813rem;
+
+    &:hover {
+        background: $primary-hover;
+    }
+}
+
+.btn-delete {
+    background: $danger-color;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.813rem;
+
+    &:hover {
+        background: $danger-hover;
+    }
+}
+
+// Modal
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background: $background;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: $text-secondary;
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: all 0.2s;
+
+        &:hover {
+            background: $background-alt;
+            color: $text-primary;
+        }
+    }
+}
+
+// Form
+.client-form {
+    padding: 1.5rem;
+
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: $text-primary;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+
+            &.input-error {
+                border-color: $error-color;
+
+                &:focus {
+                    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+                }
+            }
+
+            &::placeholder {
+                color: $text-secondary;
+            }
+        }
+
+        .error-message {
+            display: block;
+            color: $error-color;
+            font-size: 0.813rem;
+            margin-top: 0.375rem;
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding-top: 1rem;
+        border-top: 1px solid $border-color;
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Client Profile Modal
+.client-profile-modal {
+    background: $background;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: slideUp 0.3s ease-out;
+    overflow: hidden;
+}
+
+.profile-header {
+    padding: 2rem;
+    background: linear-gradient(135deg, $primary-color 0%, #1d4ed8 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .profile-header-content {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 700;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .profile-info {
+        h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0.25rem 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .profile-email,
+        .profile-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    }
+
+    .profile-header-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+
+        .btn-edit {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-1px);
+            }
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+}
+
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    background: $background;
+    padding: 0 2rem;
+
+    .tab-button {
+        padding: 1rem 1.5rem;
+        background: none;
+        border: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: $text-secondary;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+        position: relative;
+        top: 1px;
+
+        &:hover {
+            color: $text-primary;
+        }
+
+        &.active {
+            color: $primary-color;
+            border-bottom-color: $primary-color;
+        }
+    }
+}
+
+.profile-content {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.overview-tab {
+    .info-section {
+        margin-bottom: 2rem;
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: $text-primary;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid $border-color;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            label {
+                display: block;
+                font-size: 0.813rem;
+                font-weight: 500;
+                color: $text-secondary;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+                color: $text-primary;
+                margin: 0;
+                font-weight: 500;
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: $background-alt;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid $border-color;
+
+            .stat-value {
+                font-size: 2rem;
+                font-weight: 700;
+                color: $primary-color;
+                margin-bottom: 0.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.875rem;
+                color: $text-secondary;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.cases-tab,
+.documents-tab {
+    .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 2rem;
+        text-align: center;
+
+        svg {
+            color: $text-secondary;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: $text-primary;
+            margin: 0 0 0.5rem 0;
+        }
+
+        p {
+            color: $text-secondary;
+            margin: 0 0 1.5rem 0;
+            max-width: 400px;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .client-list-container {
+        padding: 1rem;
+
+        .client-list-header {
+            .header-actions {
+                flex-direction: column;
+                align-items: stretch;
+
+                .search-input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .client-table {
+        display: block;
+        overflow-x: auto;
+
+        thead,
+        tbody,
+        tr,
+        th,
+        td {
+            display: block;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tbody tr {
+            margin-bottom: 1rem;
+            border: 1px solid $border-color;
+            border-radius: 8px;
+            padding: 1rem;
+
+            td {
+                padding: 0.5rem 0;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &::before {
+                    content: attr(data-label);
+                    font-weight: 600;
+                    color: $text-secondary;
+                    font-size: 0.813rem;
+                    text-transform: uppercase;
+                }
+
+                &.client-actions {
+                    justify-content: flex-start;
+                    padding-top: 1rem;
+                    margin-top: 0.5rem;
+                    border-top: 1px solid $border-color;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-content {
+        margin: 1rem;
+    }
+
+    .client-profile-modal {
+        max-height: 95vh;
+        margin: 0.5rem;
+    }
+
+    .profile-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+
+        .profile-header-content {
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+        }
+
+        .profile-header-actions {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    .profile-tabs {
+        padding: 0 1rem;
+        overflow-x: auto;
+
+        .tab-button {
+            padding: 1rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+    }
+
+    .profile-content {
+        padding: 1rem;
+    }
+
+    .overview-tab .info-section {
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}

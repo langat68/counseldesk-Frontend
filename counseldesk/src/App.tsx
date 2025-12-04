@@ -1,21 +1,14 @@
-import Register from './components/auth/RegisterForm'
-import Login from './components/auth/LoginForm'
-import CalendarView from './components/calendar/CalendarView'
-import AppointmentForm from './components/calendar/AppointmentForm'
-import './App.css'
+import Layout from './components/layout/Layout';
+import Register from './components/auth/RegisterForm';
+import Login from './components/auth/LoginForm';
+import CalendarView from './components/calendar/CalendarView';
 
 function App() {
-
-
   return (
-    <>
-      <Register />
-      <Login />
+    <Layout>
       <CalendarView />
-
-
-    </>
-  )
+    </Layout>
+  );
 }
 
-export default App
+export default App;
