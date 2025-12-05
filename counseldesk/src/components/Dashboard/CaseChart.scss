@@ -1,0 +1,58 @@
+.case-chart {
+    background-color: hsl(222, 47%, 14%);
+    border-radius: 12px;
+    padding: 16px;
+    color: hsl(210, 40%, 98%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.5s ease forwards;
+
+    &-header {
+        margin-bottom: 16px;
+    }
+
+    &-title {
+        font-size: 1.125rem; // text-lg
+        margin: 0;
+    }
+
+    &-content {
+        .chart-container {
+            height: 200px;
+        }
+
+        .case-chart-legend {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 12px;
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                .legend-color {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                }
+
+                .legend-text {
+                    font-size: 0.75rem;
+                    color: hsl(210, 40%, 80%);
+                }
+            }
+        }
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,86 @@
+.stat-card {
+    background-color: hsl(222, 47%, 14%);
+    border-radius: 12px;
+    padding: 24px;
+    color: hsl(210, 40%, 98%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slide-up 0.5s ease forwards;
+
+    .stat-card-content {
+        display: flex;
+        flex-direction: column;
+
+        .stat-card-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+
+            .stat-card-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                .stat-card-title {
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: hsl(210, 40%, 60%);
+                }
+
+                .stat-card-value {
+                    font-size: 2rem;
+                    font-family: serif;
+                    font-weight: bold;
+                    color: hsl(210, 40%, 98%);
+                }
+
+                .stat-card-trend {
+                    font-size: 0.75rem;
+                    font-weight: 500;
+
+                    &.positive {
+                        color: hsl(142, 76%, 36%);
+                    }
+
+                    &.negative {
+                        color: hsl(0, 76%, 60%);
+                    }
+                }
+            }
+
+            .stat-card-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                background-color: hsl(199, 89%, 48%, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .icon {
+                    width: 24px;
+                    height: 24px;
+                }
+
+                &.inherit-color .icon {
+                    color: inherit;
+                }
+
+                &.default-color .icon {
+                    color: hsl(199, 89%, 48%);
+                }
+            }
+        }
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
