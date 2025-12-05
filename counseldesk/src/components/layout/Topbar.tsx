@@ -20,7 +20,7 @@ interface TopbarProps {
 const Topbar: React.FC<TopbarProps> = ({
     onThemeToggle,
     isDarkMode = false,
-    userName = 'John Doe',
+    userName = 'fidel kipsang',
     userRole = 'Attorney'
 }) => {
     const [showNotifications, setShowNotifications] = useState(false);
@@ -138,7 +138,7 @@ const Topbar: React.FC<TopbarProps> = ({
                                     <div className="user-avatar-large">JD</div>
                                     <div>
                                         <p className="user-dropdown-name">{userName}</p>
-                                        <p className="user-dropdown-email">john.doe@lawfirm.com</p>
+                                        <p className="user-dropdown-email">counseldeck@lawfirm.com</p>
                                     </div>
                                 </div>
                                 <ul className="user-menu-list">
